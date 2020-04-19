@@ -10,13 +10,6 @@ app.set('views', path.join(__dirname, './views'));
 
 app.use(express.static(path.join(__dirname, './static')));
 // we need a route that we can open i thebrowser
-app.get('/', (request, res) => {
-  res.sendfile(path.join(__dirname, './static/index.html'));
-});
-
-app.get('/speakers', (request, res) => {
-  res.sendfile(path.join(__dirname, './static/speakers.html'));
-});
 
 app.listen(port, () => {
   console.log(`Express server is listening on port: ${port}`);
