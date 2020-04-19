@@ -1,14 +1,23 @@
 const express = require('express');
+const path = require('path');
 
 const app = express();
 
 const port = 3000;
 
-//we need a route that we can open i thebrowser
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, './views'));
+
+app.use(express.static(path.join(__dirname, './static')));
+// we need a route that we can open i thebrowser
 app.get('/', (request, res) => {
-    res.send('Hello Express here :)');
+  res.sendfile(path.join(__dirname, './static/index.html'));
+});
+
+app.get('/speakers', (request, res) => {
+  res.sendfile(path.join(__dirname, './static/speakers.html'));
 });
 
 app.listen(port, () => {
-    console.log(`Express server is listening on port: ${port}`);
+  console.log(`Express server is listening on port: ${port}`);
 });
