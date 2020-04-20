@@ -26,7 +26,7 @@ app.use(
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, './views'));
 
-app.locals.siteName = 'ROUX Meetups';
+app.locals.siteName = 'San José de Noche';
 
 app.use(express.static(path.join(__dirname, './static')));
 // we need a route that we can open i thebrowser
@@ -36,7 +36,7 @@ app.use(async (request, response, next) => {
   try {
     const names = await speakerService.getNames();
     response.locals.speakerNames = names;
-    console.log(response.locals.speakerNames);
+    // console.log(response.locals.speakerNames);
     return next();
   } catch (error) {
     return next(error);
