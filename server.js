@@ -54,3 +54,15 @@ app.use(
 app.listen(port, () => {
   console.log(`Express server is listening on port: ${port}`);
 });
+
+// TODO MAKE THE ARTWORK SECTION A PARTIAL AND THEN MAKE IT DYNAMIC
+// ! Steps
+//* 1. Make sure to use the GetAllArtwork() method in the Speaker Services (takes in a shortname)
+//* 2. also uset the getArtworkForSpeaker() method
+//* 3.
+// ? Change the routes to fetch the right array of atwork
+// ! provide the rights arrays of atwork to the templates
+// ! First Create the templates and then provide those arrays to the templates
+// !Once inside the template =>
+// *Factor out the artwork on the sidebar
+// * Iterate through the array of artwork items to create a list that we see on the page
