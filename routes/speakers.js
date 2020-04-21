@@ -12,24 +12,24 @@ module.exports = (params) => {
 
   router.get('/', async (request, response) => {
     const speakers = await speakerService.getList();
-    const allArtwork = await speakerService.getAllArtwork();
+    const artwork = await speakerService.getAllArtwork();
     response.render('layout', {
       pageTitle: 'Speakers',
       template: 'speakers',
       speakers,
-      allArtwork,
+      artwork,
     });
   });
 
   router.get('/:shortname', async (request, response) => {
     const speaker = await speakerService.getSpeaker(request.params.shortname);
-    const speakerArtwork = await speakerService.getArtworkForSpeaker();
-    console.log(speaker);
+    const artwork = await speakerService.getArtworkForSpeaker(request.params.shortname);
+    console.log(artwork);
     response.render('layout', {
       pageTitle: 'Speakers',
       template: 'speakers-detail',
       speaker,
-      speakerArtwork,
+      artwork,
     });
   });
 
