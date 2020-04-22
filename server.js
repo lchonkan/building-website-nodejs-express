@@ -27,6 +27,8 @@ const app = express();
 
 const port = 3000;
 
+// ! Middleware
+
 app.set('trust proxy', 1); // so that it works on production.
 
 app.use(
@@ -44,7 +46,12 @@ app.locals.siteName = 'San José de Noche';
 app.use(express.static(path.join(__dirname, './static')));
 // we need a route that we can open i thebrowser
 
-// Setting up global variables
+// * Error handling
+app.get('/throw', (request, response, next) => {
+  throw new Error('Something did throw!');
+});
+
+// !Setting up global variables
 app.use(async (request, response, next) => {
   try {
     const names = await speakerService.getNames();
@@ -63,6 +70,8 @@ app.use(
     speakerService,
   })
 );
+
+// !Setting up global variables
 
 app.listen(port, () => {
   console.log(`Express server is listening on port: ${port}`);
