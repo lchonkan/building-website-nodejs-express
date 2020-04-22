@@ -48,7 +48,9 @@ app.use(express.static(path.join(__dirname, './static')));
 
 // * Error handling
 app.get('/throw', (request, response, next) => {
-  throw new Error('Something did throw!');
+  setTimeout(() => {
+    return next(new Error('Something did throw!'));
+  }, 500);
 });
 
 // !Setting up global variables
