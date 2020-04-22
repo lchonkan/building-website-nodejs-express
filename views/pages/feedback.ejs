@@ -12,8 +12,11 @@
             <% }) %>
           </ul>
         </div>
+        <%} else if (locals.successMessage) {%>
+        <div class="alert alert-success">
+          <%= successMessage %>
+        </div>
         <%} %>
-
         <!-- *In forms, we use the POST method and the action the URL the form needs to be sent to = POST ROUTE -->
 
         <form class="feedback-form" method="POST" action="/feedback">
