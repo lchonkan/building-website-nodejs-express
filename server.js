@@ -47,11 +47,6 @@ app.use(express.static(path.join(__dirname, './static')));
 // we need a route that we can open i thebrowser
 
 // * Error handling
-app.get('/throw', (request, response, next) => {
-  setTimeout(() => {
-    return next(new Error('Something did throw!'));
-  }, 500);
-});
 
 // !Setting up global variables
 app.use(async (request, response, next) => {
