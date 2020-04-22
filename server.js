@@ -16,6 +16,9 @@ const path = require('path');
 const cookieSession = require('cookie-session');
 const createError = require('http-errors');
 
+// ! body-parser is a middleware that operates on the POST request object.
+const bodyParser = require('body-parser');
+
 const FeedbackService = require('./services/FeedbackService');
 const SpeakerService = require('./services/SpeakerService');
 
@@ -38,6 +41,9 @@ app.use(
     keys: ['dushf1882rsahf2131sdkjf', 'fasfasfasfasfa'],
   })
 );
+
+// ! body-parser is a middleware that operates on the POST request object.
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, './views'));

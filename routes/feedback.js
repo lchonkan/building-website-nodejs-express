@@ -18,7 +18,9 @@ module.exports = (params) => {
     }
   });
 
+  //TODO import body-parse to parse the feedback responses within the router post method
   router.post('/', (request, response) => {
+    console.log(request.body); // we are getting this body from the body-parser middleware in the server.js file
     return response.send(`Feedback from posted`);
   });
 
