@@ -14,6 +14,7 @@
 const express = require('express');
 const path = require('path');
 const cookieSession = require('cookie-session');
+const createError = require('http-errors');
 
 const FeedbackService = require('./services/FeedbackService');
 const SpeakerService = require('./services/SpeakerService');
@@ -46,8 +47,6 @@ app.locals.siteName = 'San José de Noche';
 app.use(express.static(path.join(__dirname, './static')));
 // we need a route that we can open i thebrowser
 
-// * Error handling
-
 // !Setting up global variables
 app.use(async (request, response, next) => {
   try {
@@ -68,7 +67,19 @@ app.use(
   })
 );
 
-// !Setting up global variables
+app.use((request, response, next) => {
+  return next(createError(404, 'File no encontrado'));
+});
+
+// ! This is an error handler. it is the only middleware with 4 arguments!
+app.use((err, request, response, next) => {
+  response.locals.message = err.message;
+  console.log(err);
+  const status = err.status || 500;
+  response.locals.status = status;
+  response.status(status);
+  response.render('error');
+});
 
 app.listen(port, () => {
   console.log(`Express server is listening on port: ${port}`);
