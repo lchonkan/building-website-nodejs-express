@@ -4,6 +4,16 @@
       <div class="maincontent">
         <h1>Send us feedback</h1>
 
+        <% if(locals.errors) {%>
+        <div class="alert alert-danger">
+          <ul>
+            <% errors.forEach(function(error) { %>
+            <li><%=error.msg %></li>
+            <% }) %>
+          </ul>
+        </div>
+        <%} %>
+
         <!-- *In forms, we use the POST method and the action the URL the form needs to be sent to = POST ROUTE -->
 
         <form class="feedback-form" method="POST" action="/feedback">
